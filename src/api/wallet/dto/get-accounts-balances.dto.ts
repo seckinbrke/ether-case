@@ -1,7 +1,7 @@
-import { ArrayNotEmpty, IsArray } from 'class-validator';
+import { ArrayNotEmpty, IsString } from 'class-validator';
 
 export class GetAccountsBalancesDto {
-  @IsArray()
+  @IsString({ each: true })
   @ArrayNotEmpty()
     accounts: string[];
 }

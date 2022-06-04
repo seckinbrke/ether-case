@@ -9,9 +9,11 @@ export class WalletService {
     private ethersServiceCaller: EthersServiceCaller,
   ) {}
 
-  // BigInt değerlerinin toString methodu çağırmadan string bir şekilde dönmesi konusunu uzun bir süre
-  // araştırdım fakat net bir sonuca varamadım. Son adıma gelene kadar BigInt type ında olmasına rağmen,
-  // node js response u dönerken stringe çeviriyor. Bu gizemi araştırmaya devam edeceğim :)
+  /*
+    belirli bir decimal point’ten sonra http Express vb sayıları string olarak client response olarak döner.
+    Date timestamp de bu şekilde. Bunun olmaması için repsonse DTO yazılması ve dönüş tiplerinin özellikle
+    belirtilmesi lazım bu number’dır, bu string’tir diye.
+  */
 
   async getAccountsBalances(accounts: string[]): Promise<AccountType[]> {
     const { ethereum: { usd } } = await this.ethersServiceCaller.getCoinValueByCurrency('ethereum', 'usd');

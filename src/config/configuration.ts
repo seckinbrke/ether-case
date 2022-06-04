@@ -24,4 +24,5 @@ export default () => ({
     mainnet: 'mainnet',
   },
   rpcApiKey: '1fc2785020d7443f880e99e4f25c5464',
+  coingeckoUrl: 'https://api.coingecko.com',
 });

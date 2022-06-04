@@ -9,6 +9,10 @@ export class WalletService {
     private ethersServiceCaller: EthersServiceCaller,
   ) {}
 
+  // BigInt değerlerinin toString methodu çağırmadan string bir şekilde dönmesi konusunu uzun bir süre
+  // araştırdım fakat net bir sonuca varamadım. Son adıma gelene kadar BigInt type ında olmasına rağmen,
+  // node js response u dönerken stringe çeviriyor. Bu gizemi araştırmaya devam edeceğim :)
+
   async getAccountsBalances(accounts: string[]): Promise<AccountType[]> {
     const { ethereum: { usd } } = await this.ethersServiceCaller.getCoinValueByCurrency('ethereum', 'usd');
 

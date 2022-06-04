@@ -7,7 +7,7 @@ import { configuration } from '../src/config';
 import { ENVIRONMENTS } from '../src/constants';
 import { EthersServiceCaller } from '../src/service-caller/ethers.caller';
 import { WalletModule } from '../src/api/wallet/wallet.module';
-import { mockConstants } from './mocks/mock-service-caller';
+import { mockConstants } from './mocks';
 
 const { accounts, ethereumBalances, usdBalances } = mockConstants;
 
@@ -93,19 +93,6 @@ describe('Wallet (e2e)', () => {
       expect(statusCode).toBe(201);
       expect(body[0].account).toBe(accounts[2]);
       expect(body[0].error.code).toBe('INVALID_ARGUMENT');
-    });
-
-    it('Invalid payload, then it will give error.', async () => {
-      const response = await request(app.getHttpServer())
-        .post('/wallet/get-accounts-balances')
-        .send({
-          accountss: accounts[0],
-        });
-
-      const { body, statusCode } = response;
-
-      expect(statusCode).toBe(500);
-      expect(body.message).toBe('Internal server error');
     });
 
     it('If there is an error on getCoinValueByCurrency, then it will give error.', async () => {
